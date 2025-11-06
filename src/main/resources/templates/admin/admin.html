@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ru"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="shards/head :: head('Admin panel')"></head>
+<body>
+
+<nav th:replace="shards/navbar :: navbar(${user}, ${_csrf})"></nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <div th:replace="shards/sidebar :: sidebar"></div>
+        <div class="col-md-9 col-lg-10 p-4">
+            <h1 class="mb-4">Admin panel</h1>
+            <div th:replace="shards/tabs :: tabs(${users}, ${allRoles}, ${_csrf})"></div>
+        </div>
+    </div>
+</div>
+
+<div th:replace="shards/modals :: modals(${allRoles}, ${_csrf})"></div>
+
+</body>
+</html>

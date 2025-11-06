@@ -1,0 +1,16 @@
+<!— templates/fragments/navbar.html —>
+<nav th:fragment="navbar(user, csrf)"
+     class="navbar navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <span th:text="${user.email}">email</span>
+            <small class="text-light-emphasis">
+                with roles: <span th:text="${user.getRoleCorrectNames()}">roleNames</span>
+            </small>
+        </a>
+        <form action="/logout" method="post">
+            <input type="hidden" th:name="${csrf.parameterName}" th:value="${csrf.token}"/>
+            <button type="submit" class="btn btn-outline-light btn-sm">Logout</button>
+        </form>
+    </div>
+</nav>
