@@ -34,15 +34,11 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         User existingUser = userRepository.findById(user.getId())
                 .orElseThrow(() -> new RuntimeException("Пользователь не найден"));
 
-        existingUser.setName(user.getName());
-        existingUser.setLastName(user.getLastName());
-        existingUser.setEmail(user.getEmail());
-        existingUser.setAge(user.getAge());
-        existingUser.setRoles(user.getRoles());
-
         if (user.getPassword() != null && !user.getPassword().isBlank()) {
             existingUser.setPassword(passwordEncoder.encode(user.getPassword()));
         }
+
+        existingUser.setNewDataToUser(user);
         userRepository.save(existingUser);
     }
 

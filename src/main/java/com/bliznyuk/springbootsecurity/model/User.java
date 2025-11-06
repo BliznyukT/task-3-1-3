@@ -74,6 +74,14 @@ public class User implements UserDetails {
                 .collect(Collectors.joining(","));
     }
 
+    public void setNewDataToUser(User user) {
+        this.name = user.getName();
+        this.lastName = user.getLastName();
+        this.email = user.getEmail();
+        this.age = user.getAge();
+        this.roles = user.getRoles();
+    }
+
     @Override
     public String getUsername() {
         return email;

@@ -1,5 +1,6 @@
 <!doctype html>
-<html lang="ru">
+<html lang="ru"
+      xmlns:sec="https://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -44,6 +45,11 @@
                 <li class="nav-item">
                     <a class="nav-link bg-primary text-white fw-bold" href="#">
                         User
+                    </a>
+                </li>
+                <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
+                    <a class="nav-link text-dark" href="admin">
+                        Admin
                     </a>
                 </li>
             </ul>

@@ -82,6 +82,11 @@ public class AdminController {
         if (currentEmail.equals(user.getEmail())) {
             UserDetails updUserDetails = userServiceImpl.loadUserByUsername(user.getEmail());
 
+            if (user.getRoles().stream().noneMatch(s -> s.getName().equals("ROLE_ADMIN"))) {
+                SecurityContextHolder.clearContext();
+                return "redirect:/auth/login?logout";
+            }
+
             Authentication newAuth = new UsernamePasswordAuthenticationToken(updUserDetails,
                     auth.getCredentials(), updUserDetails.getAuthorities());
 
